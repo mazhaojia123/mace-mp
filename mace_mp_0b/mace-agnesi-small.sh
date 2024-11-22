@@ -1,4 +1,4 @@
-srun python mace/mace/cli/run_train.py \
+python mace/mace/cli/run_train.py \
     --name="MACE_large_agnesi" \
     --train_file=".../train" \
     --valid_file=".../valid" \

@@ -1,4 +1,4 @@
-srun python /pscratch/sd/c/cyrusyc/mace/mace/cli/run_train.py \
+python /pscratch/sd/c/cyrusyc/mace/mace/cli/run_train.py \
     --name=$exp_name \
     --train_file="../../dataset/mptrj-gga-ggapu-train" \
     --valid_file="../../dataset/mptrj-gga-ggapu-val" \

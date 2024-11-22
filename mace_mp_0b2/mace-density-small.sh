@@ -1,4 +1,4 @@
-srun python mace/mace/cli/run_train.py \
+python mace/mace/cli/run_train.py \
     --name="MACE_small_density" \
     --train_file=".../mace_large_hp/mace_mp_data/train" \
     --valid_file=".../mace_large_hp/mace_mp_data/valid" \
