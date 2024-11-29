@@ -1,0 +1,127 @@
+2024-11-25 09:59:14.260 INFO: ===========VERIFYING SETTINGS===========
+2024-11-25 09:59:14.260 INFO: MACE version: 0.3.8
+2024-11-25 09:59:14.261 DEBUG: Configuration: Namespace(config=None, name='MACE_large_agnesi', seed=1, work_dir='.', log_dir='./logs', model_dir='.', checkpoints_dir='./checkpoints', results_dir='./results', downloads_dir='./downloads', device='cuda', default_dtype='float64', distributed=False, log_level='INFO', error_table='PerAtomMAE', model='MACE', r_max=6.0, radial_type='bessel', num_radial_basis=8, num_cutoff_basis=5, pair_repulsion=True, distance_transform='Agnesi', interaction='RealAgnosticResidualInteractionBlock', interaction_first='RealAgnosticResidualInteractionBlock', max_ell=3, correlation=3, num_interactions=2, MLP_irreps='16x0e', radial_MLP='[64, 64, 64]', hidden_irreps=128x0e, num_channels=128, max_L=0, gate='silu', scaling='rms_forces_scaling', avg_num_neighbors=1, compute_avg_num_neighbors=True, compute_stress=True, compute_forces=True, train_file='/home/mazhaojia/mace-project/mace-bench/data/processed_data/train', valid_file='/home/mazhaojia/mace-project/mace-bench/data/processed_data/valid', valid_fraction=0.1, test_file=None, test_dir=None, multi_processed_test=False, num_workers=4, pin_memory=True, atomic_numbers=None, mean=None, std=None, statistics_file='/home/mazhaojia/mace-project/mace-bench/data/mptrj-gga-ggapu-statistics.json', E0s=None, foundation_filter_elements=True, heads=None, multiheads_finetuning=True, foundation_head=None, weight_pt_head=1.0, num_samples_pt=1000, subselect_pt='random', pt_train_file=None, pt_valid_file=None, keep_isolated_atoms=False, energy_key='energy', forces_key='forces', virials_key='REF_virials', stress_key='stress', dipole_key='REF_dipole', charges_key='REF_charges', loss='universal', forces_weight=10.0, swa_forces_weight=100.0, energy_weight=1.0, swa_energy_weight=1000.0, virials_weight=1.0, swa_virials_weight=10.0, stress_weight=10.0, swa_stress_weight=10.0, dipole_weight=1.0, swa_dipole_weight=1.0, config_type_weights='{"Default":1.0}', huber_delta=0.01, optimizer='adam', beta=0.9, batch_size=16, valid_batch_size=32, lr=0.005, swa_lr=0.001, weight_decay=1e-08, amsgrad=True, scheduler='ReduceLROnPlateau', lr_factor=0.8, scheduler_patience=5, lr_scheduler_gamma=0.9993, swa=False, start_swa=None, ema=True, ema_decay=0.995, max_num_epochs=100, patience=40, foundation_model=None, foundation_model_readout=True, eval_interval=1, keep_checkpoints=True, save_all_checkpoints=True, restart_latest=True, save_cpu=True, clip_grad=100.0, wandb=False, wandb_dir=None, wandb_project='', wandb_entity='', wandb_name='', wandb_log_hypers=['num_channels', 'max_L', 'correlation', 'lr', 'swa_lr', 'weight_decay', 'batch_size', 'max_num_epochs', 'start_swa', 'energy_weight', 'forces_weight'])
+2024-11-25 09:59:14.674 INFO: CUDA version: 11.8, CUDA device: 0
+2024-11-25 09:59:14.710 DEBUG: Popen(['git', 'version'], cwd=/home/mazhaojia/mace-project/mace-bench/3rdparty/mace-mp/mace_mp_0b, stdin=None, shell=False, universal_newlines=False)
+2024-11-25 09:59:14.714 DEBUG: Popen(['git', 'version'], cwd=/home/mazhaojia/mace-project/mace-bench/3rdparty/mace-mp/mace_mp_0b, stdin=None, shell=False, universal_newlines=False)
+2024-11-25 09:59:14.719 DEBUG: Popen(['git', 'cat-file', '--batch-check'], cwd=/home/mazhaojia/mace-project/mace-bench/3rdparty/mace-mp, stdin=<valid stream>, shell=False, universal_newlines=False)
+2024-11-25 09:59:14.723 DEBUG: Current Git commit: b8db21ddb08f6f5e718c2af58c75c8e67c9cf579
+2024-11-25 09:59:14.723 INFO: ===========LOADING INPUT DATA===========
+2024-11-25 09:59:14.723 INFO: Using heads: ['default']
+2024-11-25 09:59:14.723 INFO: =============    Processing head default     ===========
+2024-11-25 09:59:14.724 INFO: Using statistics json file
+2024-11-25 09:59:14.727 INFO: Using atomic numbers from statistics file
+2024-11-25 09:59:14.727 INFO: Atomic Numbers used: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 89, 90, 91, 92, 93, 94]
+2024-11-25 09:59:14.728 INFO: Atomic Energies used (z: eV) for head default: {1: -3.667168021358939, 2: -1.3320953124042916, 3: -3.482100566595956, 4: -4.736697230897597, 5: -7.724935420523256, 6: -8.405573550273285, 7: -7.360100452662763, 8: -7.28459863421322, 9: -4.896490881731322, 10: 1.3917755836700962e-12, 11: -2.7593613569762425, 12: -2.814047612069227, 13: -4.846881245288104, 14: -7.694793133351899, 15: -6.9632957911820235, 16: -4.672630400190884, 17: -2.8116892814008096, 18: -0.06259504416367478, 19: -2.6176454856894793, 20: -5.390461060484104, 21: -7.8857952163517675, 22: -10.268392986214433, 23: -8.665147785496703, 24: -9.233050763772013, 25: -8.304951520770791, 26: -7.0489865771593765, 27: -5.577439766222147, 28: -5.172747618813715, 29: -3.2520726958619472, 30: -1.2901611618726314, 31: -3.527082192997912, 32: -4.70845955030298, 33: -3.9765109025623238, 34: -3.886231055836541, 35: -2.5184940099633986, 36: 6.766947645687137, 37: -2.5634958965928316, 38: -4.938005211501922, 39: -10.149818838085771, 40: -11.846857579882572, 41: -12.138896361658485, 42: -8.791678800595722, 43: -8.78694939675911, 44: -7.78093221529871, 45: -6.850021409115055, 46: -4.891019073240479, 47: -2.0634296773864045, 48: -0.6395695518943755, 49: -2.7887442084286693, 50: -3.818604275441892, 51: -3.587068329278862, 52: -2.8804045971118897, 53: -1.6355986842433357, 54: 9.846723842807721, 55: -2.765284507132287, 56: -4.990956432167774, 57: -8.933684809576345, 58: -8.735591176647514, 59: -8.018966025544966, 60: -8.251491970213372, 61: -7.591719594359237, 62: -8.169659881166858, 63: -13.592664636171698, 64: -18.517523458456985, 65: -7.647396572993602, 66: -8.122981037851925, 67: -7.607787319678067, 68: -6.85029094445494, 69: -7.8268821327130365, 70: -3.584786591677161, 71: -7.455406192077973, 72: -12.796283502572146, 73: -14.108127281277586, 74: -9.354916969477486, 75: -11.387537567890853, 76: -9.621909492152557, 77: -7.324393429417677, 78: -5.3046964808341945, 79: -2.380092582080244, 80: 0.24948924158195362, 81: -2.3239789120665026, 82: -3.730042357127322, 83: -3.438792347649683, 89: -5.062878214511315, 90: -11.02462566385297, 91: -12.265613551943261, 92: -13.855648206100362, 93: -14.933092020258243, 94: -15.282826131998245}
+2024-11-25 09:59:15.525 INFO: Average number of neighbors: 61.964672446250916
+2024-11-25 09:59:15.525 INFO: During training the following quantities will be reported: energy, forces, virials, stress
+2024-11-25 09:59:15.525 INFO: ===========MODEL DETAILS===========
+2024-11-25 09:59:15.671 DEBUG: Creating converter from 3 to 5
+2024-11-25 09:59:15.679 DEBUG: Creating converter from 3 to 5
+2024-11-25 09:59:15.685 DEBUG: Creating converter from 3 to 5
+2024-11-25 09:59:15.692 DEBUG: Creating converter from 3 to 5
+2024-11-25 10:39:17.869 INFO: Building model
+2024-11-25 10:39:17.870 INFO: Message passing with 128 channels and max_L=0 (128x0e)
+2024-11-25 10:39:17.870 INFO: 2 layers, each with correlation order: 3 (body order: 4) and spherical harmonics up to: l=3
+2024-11-25 10:39:17.870 INFO: 8 radial and 5 basis functions
+2024-11-25 10:39:17.870 INFO: Radial cutoff: 6.0 A (total receptive field for each atom: 12.0 A)
+2024-11-25 10:39:17.871 INFO: Distance transform for radial basis functions: Agnesi
+2024-11-25 10:39:17.871 INFO: Hidden irreps: 128x0e
+2024-11-25 10:39:19.320 DEBUG: ScaleShiftMACE(
+  (node_embedding): LinearNodeEmbeddingBlock(
+    (linear): Linear(89x0e -> 128x0e | 11392 weights)
+  )
+  (radial_embedding): RadialEmbeddingBlock(
+    (bessel_fn): BesselBasis(r_max=6.0, num_basis=8, trainable=False)
+    (distance_transform): AgnesiTransform(a=1.0805, q=0.9183, p=4.5791)
+    (cutoff_fn): PolynomialCutoff(p=5.0, r_max=6.0)
+  )
+  (pair_repulsion_fn): ZBLBasis(r_max=6.0, c=tensor([0.1818, 0.5099, 0.2802, 0.0282], device='cuda:0'))
+  (spherical_harmonics): SphericalHarmonics()
+  (atomic_energies_fn): AtomicEnergiesBlock(energies=[[-3.6672, -1.3321, -3.4821, -4.7367, -7.7249, -8.4056, -7.3601, -7.2846, -4.8965, 0.0000, -2.7594, -2.8140, -4.8469, -7.6948, -6.9633, -4.6726, -2.8117, -0.0626, -2.6176, -5.3905, -7.8858, -10.2684, -8.6651, -9.2331, -8.3050, -7.0490, -5.5774, -5.1727, -3.2521, -1.2902, -3.5271, -4.7085, -3.9765, -3.8862, -2.5185, 6.7669, -2.5635, -4.9380, -10.1498, -11.8469, -12.1389, -8.7917, -8.7869, -7.7809, -6.8500, -4.8910, -2.0634, -0.6396, -2.7887, -3.8186, -3.5871, -2.8804, -1.6356, 9.8467, -2.7653, -4.9910, -8.9337, -8.7356, -8.0190, -8.2515, -7.5917, -8.1697, -13.5927, -18.5175, -7.6474, -8.1230, -7.6078, -6.8503, -7.8269, -3.5848, -7.4554, -12.7963, -14.1081, -9.3549, -11.3875, -9.6219, -7.3244, -5.3047, -2.3801, 0.2495, -2.3240, -3.7300, -3.4388, -5.0629, -11.0246, -12.2656, -13.8556, -14.9331, -15.2828]])
+  (interactions): ModuleList(
+    (0): RealAgnosticInteractionBlock(
+      (linear_up): Linear(128x0e -> 128x0e | 16384 weights)
+      (conv_tp): TensorProduct(128x0e x 1x0e+1x1o+1x2e+1x3o -> 128x0e+128x1o+128x2e+128x3o | 512 paths | 512 weights)
+      (conv_tp_weights): FullyConnectedNet[8, 64, 64, 64, 512]
+      (linear): Linear(128x0e+128x1o+128x2e+128x3o -> 128x0e+128x1o+128x2e+128x3o | 65536 weights)
+      (skip_tp): FullyConnectedTensorProduct(128x0e+128x1o+128x2e+128x3o x 89x0e -> 128x0e+128x1o+128x2e+128x3o | 5832704 paths | 5832704 weights)
+      (reshape): reshape_irreps()
+    )
+    (1): RealAgnosticResidualInteractionBlock(
+      (linear_up): Linear(128x0e -> 128x0e | 16384 weights)
+      (conv_tp): TensorProduct(128x0e x 1x0e+1x1o+1x2e+1x3o -> 128x0e+128x1o+128x2e+128x3o | 512 paths | 512 weights)
+      (conv_tp_weights): FullyConnectedNet[8, 64, 64, 64, 512]
+      (linear): Linear(128x0e+128x1o+128x2e+128x3o -> 128x0e+128x1o+128x2e+128x3o | 65536 weights)
+      (skip_tp): FullyConnectedTensorProduct(128x0e x 89x0e -> 128x0e | 1458176 paths | 1458176 weights)
+      (reshape): reshape_irreps()
+    )
+  )
+  (products): ModuleList(
+    (0-1): 2 x EquivariantProductBasisBlock(
+      (symmetric_contractions): SymmetricContraction(
+        (contractions): ModuleList(
+          (0): Contraction(
+            (contractions_weighting): ModuleList(
+              (0-1): 2 x GraphModule()
+            )
+            (contractions_features): ModuleList(
+              (0-1): 2 x GraphModule()
+            )
+            (weights): ParameterList(
+                (0): Parameter containing: [torch.float64 of size 89x4x128 (cuda:0)]
+                (1): Parameter containing: [torch.float64 of size 89x1x128 (cuda:0)]
+            )
+            (graph_opt_main): GraphModule()
+          )
+        )
+      )
+      (linear): Linear(128x0e -> 128x0e | 16384 weights)
+    )
+  )
+  (readouts): ModuleList(
+    (0): LinearReadoutBlock(
+      (linear): Linear(128x0e -> 1x0e | 128 weights)
+    )
+    (1): NonLinearReadoutBlock(
+      (linear_1): Linear(128x0e -> 16x0e | 2048 weights)
+      (non_linearity): Activation [x] (16x0e -> 16x0e)
+      (linear_2): Linear(16x0e -> 1x0e | 16 weights)
+    )
+  )
+  (scale_shift): ScaleShiftBlock(scale=0.8081, shift=0.0000)
+)
+2024-11-25 10:39:19.368 INFO: Total number of parameters: 8221968
+2024-11-25 10:39:19.368 INFO: 
+2024-11-25 10:39:19.368 INFO: ===========OPTIMIZER INFORMATION===========
+2024-11-25 10:39:19.369 INFO: Using ADAM as parameter optimizer
+2024-11-25 10:39:19.369 INFO: Batch size: 16
+2024-11-25 10:39:19.369 INFO: Using Exponential Moving Average with decay: 0.995
+2024-11-25 10:39:19.369 INFO: Number of gradient updates: 9864306
+2024-11-25 10:39:19.369 INFO: Learning rate: 0.005, weight decay: 1e-08
+2024-11-25 10:39:19.369 INFO: UniversalLoss(energy_weight=1.000, forces_weight=10.000, stress_weight=10.000)
+2024-11-25 10:39:19.370 WARNING: Cannot find checkpoint with tag 'MACE_large_agnesi_run-1' in './checkpoints'
+2024-11-25 10:39:19.371 INFO: Using gradient clipping with tolerance=100.000
+2024-11-25 10:39:19.371 INFO: 
+2024-11-25 10:39:19.371 INFO: ===========TRAINING===========
+2024-11-25 10:39:19.371 INFO: Started training, reporting errors on validation set
+2024-11-25 10:39:19.371 INFO: Loss metrics on validation set
+2024-11-25 10:39:19.595 DEBUG: Creating converter from 3 to 5
+2024-11-25 10:39:19.598 DEBUG: Creating converter from 3 to 5
+2024-11-25 10:39:19.693 DEBUG: Creating converter from 3 to 5
+2024-11-25 10:39:19.725 DEBUG: Creating converter from 3 to 5
+2024-11-25 10:39:29.126 INFO: Initial: head: default, loss=0.00054764, RMSE_E_per_atom=  877.94 meV, RMSE_F=  433.41 meV / A, RMSE_stress=   13.15 meV / A^3
+2024-11-25 10:39:29.500 DEBUG: Creating converter from 3 to 5
+2024-11-25 10:39:29.500 DEBUG: Creating converter from 3 to 5
+2024-11-25 10:39:29.501 DEBUG: Creating converter from 3 to 5
+2024-11-25 10:39:29.502 DEBUG: Creating converter from 3 to 5
+2024-11-25 16:54:25.237 DEBUG: Creating converter from 3 to 5
+2024-11-25 16:54:25.237 DEBUG: Creating converter from 3 to 5
+2024-11-25 16:54:25.237 DEBUG: Creating converter from 3 to 5
+2024-11-25 16:54:25.239 DEBUG: Creating converter from 3 to 5
+2024-11-25 16:54:26.328 INFO: Epoch 0: head: default, loss=0.00041043, RMSE_E_per_atom=  467.04 meV, RMSE_F=  399.04 meV / A, RMSE_stress=   12.26 meV / A^3
+2024-11-25 16:54:26.331 DEBUG: Saving checkpoint: ./checkpoints/MACE_large_agnesi_run-1_epoch-0.pt
+2024-11-25 16:54:27.055 DEBUG: Creating converter from 3 to 5
+2024-11-25 16:54:27.057 DEBUG: Creating converter from 3 to 5
+2024-11-25 16:54:27.058 DEBUG: Creating converter from 3 to 5
+2024-11-25 16:54:27.060 DEBUG: Creating converter from 3 to 5

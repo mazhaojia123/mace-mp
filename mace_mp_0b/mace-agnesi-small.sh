@@ -1,8 +1,8 @@
-python mace/mace/cli/run_train.py \
+mace_run_train \
     --name="MACE_large_agnesi" \
-    --train_file=".../train" \
-    --valid_file=".../valid" \
-    --statistics_file=".../mptrj-gga-ggapu-statistics.json" \
+    --train_file="/home/mazhaojia/mace-project/mace-bench/data/processed_data/train" \
+    --valid_file="/home/mazhaojia/mace-project/mace-bench/data/processed_data/valid" \
+    --statistics_file="/home/mazhaojia/mace-project/mace-bench/data/mptrj-gga-ggapu-statistics.json" \
     --loss='universal' \
     --energy_weight=1 \
     --forces_weight=10 \
@@ -32,7 +32,7 @@ python mace/mace/cli/run_train.py \
     --valid_batch_size=32 \
     --pair_repulsion \
     --distance_transform="Agnesi" \
-    --max_num_epochs=200 \
+    --max_num_epochs=100 \
     --patience=40 \
     --amsgrad \
     --device=cuda \
@@ -41,7 +41,13 @@ python mace/mace/cli/run_train.py \
     --keep_checkpoints \
     --save_all_checkpoints \
     --restart_latest \
-    --distributed \
     --default_dtype="float64" \
     --num_workers=4 \
     --save_cpu
+
+# python ../../mace/mace/cli/run_train.py \
+    # --batch_size=16 \
+    # --valid_batch_size=32 \
+    #--max_num_epochs=200 \
+    # --distributed \
+    # --max_ell=3 \
